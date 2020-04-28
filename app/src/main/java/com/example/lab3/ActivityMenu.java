@@ -1,5 +1,6 @@
 package com.example.lab3;
 
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -58,6 +59,9 @@ public class ActivityMenu extends AppCompatActivity {
                 Calendar thisDate = Calendar.getInstance();
                 String data = format.format(thisDate.getTime());
                 database.execSQL("INSERT INTO students(name, time) VALUES (\'" + name.get(number)+ "\','" + data + "');");
+                Toast toast = Toast.makeText(ActivityMenu.this, "Запись добавлена!", Toast.LENGTH_LONG);
+                toast.show();
+
                 name.remove(number);
 
                 dbHelper.close();
@@ -68,8 +72,9 @@ public class ActivityMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 database = dbHelper.getWritableDatabase();
-
                 database.execSQL("UPDATE students SET name = 'Иванов Иван Иванович' WHERE id = (SELECT max(id) FROM students)");
+                Toast toast = Toast.makeText(ActivityMenu.this, "Запись успешно изменена!", Toast.LENGTH_LONG);
+                toast.show();
 
                 dbHelper.close();
             }
@@ -109,7 +114,7 @@ public class ActivityMenu extends AppCompatActivity {
         Random random = new Random();
         int number;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
 
             number = random.nextInt(name.size());
 
