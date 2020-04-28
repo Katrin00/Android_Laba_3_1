@@ -114,7 +114,7 @@ public class ActivityMenu extends AppCompatActivity {
         Random random = new Random();
         int number;
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
 
             number = random.nextInt(name.size());
 
